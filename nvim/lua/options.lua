@@ -1,0 +1,25 @@
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.redrawtime = 10000
+vim.opt.updatetime = 4001
+vim.opt.showmode = false
+vim.opt.confirm = true -- ask for confirmation instead of erroring
+vim.opt.clipboard = 'unnamedplus' -- Use Linux system clipboard
+vim.opt.mouse = 'a' -- enable mouse for all modes
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.listchars = { tab = '▸ ', trail = '·' }
+vim.opt.breakindent = true -- maintain indent when wrapping indented lines
+vim.opt.title = true
+vim.opt.termguicolors = true
+vim.opt.spell = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.wrap = false
