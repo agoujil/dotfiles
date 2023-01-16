@@ -73,6 +73,25 @@ vim.keymap.set('n', '<F9>', ':!docker-compose up -d<CR>')
 vim.keymap.set('n', '<F5>', ':!docker-compose down<CR>')
 
 
+vim.keymap.set('n', '<leader>d', ":lua vim.diagnostic.enable()<CR>")
+
+vim.keymap.set('n', '<leader>dd', ":lua vim.diagnostic.disable()<CR>")
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>p", "\"+p")
+
+vim.keymap.set("n", "<leader>f", function()
+  vim.lsp.buf.format()
+end)
+
+
 vim.cmd([[
   autocmd BufEnter * EnableBlameLine
+  autocmd BufEnter * lua vim.diagnostic.disable()
 ]])
+
+
+
