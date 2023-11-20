@@ -53,6 +53,7 @@ require('lazy').setup({
       require("config.dadbod").setup()
     end,
   },
+  
 
   'ThePrimeagen/git-worktree.nvim',
   'tpope/vim-surround',
@@ -123,38 +124,7 @@ require('lazy').setup({
       }
     end
   },
-
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("notify").setup({
-        background_colour = "#000000",
-      })
-    end
-  },   
-
-  {
-    "folke/noice.nvim",
-    config = function()
-      require("noice").setup({
-        -- add any options here
-        -- routes = {
-        --   {
-        --     view = "notify",
-        --     filter = { event = "msg_showmode" },
-        --   },
-        -- },
-      })
-    end,
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  },
+ 
 
   'ray-x/go.nvim',
   'ray-x/guihua.lua',
@@ -175,6 +145,18 @@ require('lazy').setup({
       -- Useful status updates for LSP
       'j-hui/fidget.nvim',
     }
+  },
+  {
+    "jackMort/ChatGPT.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("chatgpt").setup()
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
   },
   {
     "nvim-tree/nvim-tree.lua",

@@ -20,7 +20,12 @@ vim.api.nvim_set_keymap("n", "<C-W>,", ":vertical resize -10<CR>", {noremap=true
 vim.api.nvim_set_keymap("n", "<C-W>.", ":vertical resize +10<CR>", {noremap=true})
 vim.keymap.set('n', '<space><space>', "<cmd>set nohlsearch<CR>")
 
-
+vim.api.nvim_set_keymap("n", '<C-a>', ":lua require('harpoon.mark').add_file()<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<C-z>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>1", ":lua require('harpoon.ui')..nav_file(1)<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>2", ":lua require('harpoon.ui')..nav_file(2)<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>3", ":lua require('harpoon.ui')..nav_file(3)<CR>", {noremap=true})
+vim.api.nvim_set_keymap("n", "<leader>4", ":lua require('harpoon.ui')..nav_file(4)<CR>", {noremap=true})
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -50,8 +55,40 @@ vim.keymap.set('n', '<S-Right>', ":bnext<CR>")
 vim.keymap.set('n', '<S-Left>', ":bprevious<CR>")
 
 vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set("n", "<leader>p", "\"+p")
+
+
+local api = require("nvim-tree.api")
+
+local function opts(desc)
+  return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+end
+
+
+vim.keymap.set('n', '<C-s>', api.node.open.vertical,                opts('Open: Vertical Split'))
+vim.keymap.set('n', '<Tab>', api.node.open.preview,                 opts('Open Preview'))
+vim.keymap.set('n', 'gy',    api.fs.copy.relative_path,             opts('Copy Absolute Path'))
+vim.keymap.set('n', 'cf',     api.fs.copy.node,                      opts('Copy'))
+vim.keymap.set('n', 'pf',     api.fs.paste,                          opts('Paste'))
+
+
+-- Paste replace visual selection without copying it
+vim.keymap.set('v', 'p', '"_dP')
+
+
+-- Reselect visual selection after indenting
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "<leader>ff", function()
+  vim.lsp.buf.format()
+end)
+ 
+vim.keymap.set('n', '<C-p>', "<cmd>ChatGPTRun optimize_code<CR>",                opts('Open: Vertical Split'))
+
 
 vim.cmd([[
   autocmd BufEnter * EnableBlameLine
